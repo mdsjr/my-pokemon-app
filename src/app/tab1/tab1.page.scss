@@ -1,0 +1,37 @@
+/* src/app/tab1/tab1.page.scss */
+.pokemon-list-container {
+  padding: 16px;
+}
+
+ion-card {
+  margin-bottom: 16px;
+  text-align: center;
+
+  img {
+    max-width: 120px; /* Ajuste o tamanho da imagem */
+    margin: 10px auto;
+    display: block;
+  }
+
+  ion-card-title {
+    font-size: 1.1em;
+  }
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Espaçamento entre os botões */
+  margin-top: 20px;
+
+  ion-button {
+    flex: 1; /* Faz os botões ocuparem o espaço igualmente */
+  }
+}
+
+// Para responsividade básica
+@media (min-width: 768px) {
+  .pokemon-list-container {
+    padding: 32px;
+  }
+}
