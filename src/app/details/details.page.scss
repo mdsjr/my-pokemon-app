@@ -1,0 +1,42 @@
+ion-card {
+  margin: 16px auto;
+  max-width: 600px; 
+}
+
+.pokemon-main-image {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+.pokemon-small-image {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  margin: 5px;
+}
+
+ion-chip {
+  margin: 4px;
+}
+
+ion-list-header {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-top: 15px;
+}
+
+ion-item {
+  --inner-padding-end: 0;
+  --padding-start: 0;
+}
+
+// Para responsividade
+@media (min-width: 768px) {
+  .pokemon-main-image {
+    width: 200px;
+  }
+  .pokemon-small-image {
+    width: 100px;
+  }
+}
