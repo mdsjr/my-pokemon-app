@@ -1,3 +1,4 @@
+
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -6,7 +7,17 @@
     <ion-title class="ion-text-capitalize">
       {{ pokemon?.name || 'Detalhes do Pokémon' }}
     </ion-title>
-    </ion-toolbar>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleFavorite()">
+        <ion-icon
+          slot="icon-only"
+          [name]="isCurrentPokemonFavorite ? 'heart' : 'heart-outline'"
+          [color]="isCurrentPokemonFavorite ? 'danger' : 'medium'"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
@@ -24,9 +35,11 @@
     <ion-card-content>
       <ion-grid>
         <ion-row class="ion-align-items-center ion-justify-content-center">
+          
           <ion-col size="12" class="ion-text-center">
             <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}" class="pokemon-main-image">
           </ion-col>
+          
           <ion-col size="4" *ngIf="pokemon.sprites.front_shiny" class="ion-text-center">
             <img [src]="pokemon.sprites.front_shiny" alt="{{ pokemon.name }} shiny" class="pokemon-small-image">
             <ion-text color="medium"><small>Shiny</small></ion-text>
@@ -38,6 +51,7 @@
         </ion-row>
 
         <ion-row>
+          
           <ion-col size="12">
             <ion-item lines="none">
               <ion-label>Tipo(s):</ion-label>
@@ -45,6 +59,7 @@
             </ion-item>
           </ion-col>
 
+          
           <ion-col size="6">
             <ion-item lines="none">
               <ion-label>Altura:</ion-label>
@@ -58,6 +73,7 @@
             </ion-item>
           </ion-col>
 
+          
           <ion-col size="12">
             <ion-list-header>Habilidades:</ion-list-header>
             <ion-item *ngFor="let ability of pokemon.abilities" lines="none">
@@ -66,6 +82,7 @@
             </ion-item>
           </ion-col>
 
+          
           <ion-col size="12">
             <ion-list-header>Estatísticas Base:</ion-list-header>
             <ion-item *ngFor="let stat of pokemon.stats" lines="none">

@@ -1,39 +1,62 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin } from 'rxjs';
+import { BehaviorSubject, Observable, forkJoin } from 'rxjs'; 
 import { map, switchMap } from 'rxjs/operators';
 import { Pokemon, PokemonListResponse, PokemonResult } from '../models/pokemon.model';
 
 @Injectable({
-  providedIn: 'root' 
+  providedIn: 'root'
 })
 export class PokemonService {
   private baseUrl = 'https://pokeapi.co/api/v2';
+  
+  private _favorites: BehaviorSubject<Pokemon[]> = new BehaviorSubject<Pokemon[]>([]);
+  public readonly favorites$: Observable<Pokemon[]> = this._favorites.asObservable(); 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.loadFavorites(); 
+  }
 
-<<<<<<< HEAD
+  
+  private loadFavorites() {
+    const storedFavorites = localStorage.getItem('pokemonFavorites');
+    if (storedFavorites) {
+      this._favorites.next(JSON.parse(storedFavorites));
+    }
+  }
+
+  
+  private saveFavorites() {
+    localStorage.setItem('pokemonFavorites', JSON.stringify(this._favorites.getValue()));
+  }
+
+
+  isFavorite(pokemonId: number): boolean {
+    return this._favorites.getValue().some(p => p.id === pokemonId);
+  }
+
  
-=======
-/**
-@param limit O número de Pokémons por página.
-@param offset O índice inicial para a lista.
-**/
+  toggleFavorite(pokemon: Pokemon) {
+    const currentFavorites = this._favorites.getValue();
+    const index = currentFavorites.findIndex(p => p.id === pokemon.id);
 
+    if (index > -1) {
+      
+      currentFavorites.splice(index, 1);
+    } else {
+      
+      currentFavorites.push({ ...pokemon });
+    }
+    this._favorites.next(currentFavorites); 
+    this.saveFavorites(); 
+  }
 
->>>>>>> e910126 (feat::sparkles:Implementa a tela de detalhes do Pokémon e navegação da lista)
+ 
   getPokemonList(limit: number, offset: number): Observable<PokemonListResponse> {
     return this.http.get<PokemonListResponse>(`${this.baseUrl}/pokemon/?limit=${limit}&offset=${offset}`);
   }
 
-<<<<<<< HEAD
   
-=======
-  /**
-  * @param url A URL completa para os detalhes do Pokémon.
-   */
-
->>>>>>> e910126 (feat::sparkles:Implementa a tela de detalhes do Pokémon e navegação da lista)
   getPokemonDetails(url: string): Observable<Pokemon> {
     return this.http.get<Pokemon>(url);
   }
@@ -46,10 +69,9 @@ export class PokemonService {
   getPokemonsWithDetails(limit: number, offset: number): Observable<Pokemon[]> {
     return this.getPokemonList(limit, offset).pipe(
       switchMap(response => {
-        const pokemonDetailRequests: Observable<Pokemon>[] = response.results.map(pokemon =>
-          this.getPokemonDetails(pokemon.url)
+        const pokemonDetailRequests: Observable<Pokemon>[] = response.results.map(pokemonResult =>
+          this.getPokemonDetails(pokemonResult.url)
         );
-        
         return forkJoin(pokemonDetailRequests);
       })
     );
