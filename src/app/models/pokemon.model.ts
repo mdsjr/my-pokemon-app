@@ -15,7 +15,10 @@ export interface Pokemon {
   name: string;
   sprites: {
     front_default: string;
-    // Adicione outras URLs de sprites que você queira usar
+    back_default?: string; 
+    front_shiny?: string;  
+    back_shiny?: string;   
+    
   };
   height: number;
   weight: number;
@@ -42,4 +45,5 @@ export interface Pokemon {
       url: string;
     };
   }[];
+  
 }

@@ -6,18 +6,30 @@ import { Pokemon } from '../models/pokemon.model';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component'; 
 import { Observable, forkJoin } from 'rxjs'; 
 import { switchMap } from 'rxjs/operators'; 
+<<<<<<< HEAD
+=======
+import { RouterModule } from '@angular/router';
+>>>>>>> e910126 (feat::sparkles:Implementa a tela de detalhes do Pokémon e navegação da lista)
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   standalone: true,
+<<<<<<< HEAD
   imports: [IonicModule, CommonModule, ExploreContainerComponent] 
+=======
+  imports: [IonicModule, CommonModule, RouterModule] 
+>>>>>>> e910126 (feat::sparkles:Implementa a tela de detalhes do Pokémon e navegação da lista)
 })
 export class Tab1Page implements OnInit {
   pokemons: Pokemon[] = [];
   currentPage = 0; 
   itemsPerPage = 20; 
   totalPokemons = 0; 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e910126 (feat::sparkles:Implementa a tela de detalhes do Pokémon e navegação da lista)
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit() {
