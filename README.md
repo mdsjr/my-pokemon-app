@@ -2,17 +2,26 @@
 
 Este projeto é um pequeno aplicativo desenvolvido com **Ionic e Angular** que consome a API pública **PokeAPI**. O objetivo principal é exibir uma lista de Pokémons, permitir a navegação para uma tela de detalhes e funcionalidades adicionais como paginação.
 
-## Abordagem e Padrões de Design
+## Funcionalidades Implementadas
 
-A arquitetura do projeto segue o padrão **Component-Service** do Angular, separando a lógica de negócio da apresentação da UI. Utilize-se **Injeção de Dependência** para gerenciar os serviços (ex: `PokemonService`), garantindo modularidade e testabilidade. A comunicação com a PokeAPI é feita via `HttpClient` e gerenciada com **RxJS**, aplicando operadores como `switchMap` e `forkJoin` para lidar com requisições assíncronas.
+- **Listagem de Pokémos** : Exibe uma lista paginada de Pokémons com seus nomes e imagens.
+- **Navegação Detalhada**: Permite navegar da lista para uma tela de detalhes específica de cada Pokémon.
+- **Tela de Detalhes**: Apresenta informações adicionais do Pokémon selecionado, como tipos, altura, peso, habilidades e estatísticas base, além de múltiplas imagens (normal e shiny).
+- **Gestão de Favoritos**: O usuário pode marcar/desmarcar Pokémons como favoritos na tela de detalhes. A lista de favoritos é persistida localmente (via localStorage).
+- **Tela de Favoritos**: Uma seção dedicada exibe todos os Pokémons marcados como favoritos, com opção de remoção direta da lista.
+  Paginação: Implementada para otimizar o carregamento e a usabilidade na lista principal de Pokémons.
+- **Responsividade**: A interface se adapta para funcionar adequadamente em diferentes orientações de dispositivos móveis.
 
-## Estilo de Codificação
+## Abordagem Técnica e Padrões de Design
 
-Adotei um estilo de codificação limpo e legível, com nomes descritivos para variáveis, funções e componentes, visando a clareza e a manutenção futura. O uso de **TypeScript** é prioritário para tipagem forte, reduzindo erros em tempo de desenvolvimento. As convenções de código do Angular são seguidas para manter a consistência.
+A arquitetura do aplicativo segue os princípios do Angular e Ionic, focando em:
 
-## Funcionalidades Implementadas (até o momento)
-
-* Listagem paginada de Pokémons com nome e imagem.
+- **Componentes Standalone**: Utilização do modelo de componentes autônomos do Angular para uma estrutura de código mais limpa e modular.
+- **Injeção de Dependência**: Emprego extensivo da Injeção de Dependência para gerenciar serviços (PokemonService) e dependências, promovendo testabilidade e reusabilidade.
+- **Comunicação com API**: O HttpClient do Angular é utilizado para interagir com a PokeAPI, com a orquestração de requisições assíncronas gerenciada de forma eficiente pelo RxJS (utilizando switchMap e forkJoin).
+- **Gerenciamento de Estado Local**: Para a funcionalidade de favoritos, o localStorage é empregado para persistência de dados no dispositivo, com o BehaviorSubject do RxJS notificando as mudanças em tempo real para os componentes subscritos.
+- **Roteamento**: O Angular Router é configurado para navegação entre as telas principal, de detalhes e de favoritos.
+- **Estilo de Codificação**: Priorizei um código limpo, legível e bem-organizado, seguindo as diretrizes do Angular e utilizando TypeScript para garantir tipagem forte e robustez.
 
 ## Como Rodar o Projeto
 
