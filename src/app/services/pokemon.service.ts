@@ -61,11 +61,6 @@ export class PokemonService {
     return this.http.get<Pokemon>(url);
   }
 
-<<<<<<< HEAD
- 
-=======
-  
->>>>>>> e910126 (feat::sparkles:Implementa a tela de detalhes do Pokémon e navegação da lista)
   getPokemonsWithDetails(limit: number, offset: number): Observable<Pokemon[]> {
     return this.getPokemonList(limit, offset).pipe(
       switchMap(response => {
