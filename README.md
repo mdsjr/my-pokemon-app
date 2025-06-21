@@ -32,3 +32,9 @@ A arquitetura do aplicativo segue os princípios do Angular e Ionic, focando em:
 5.  Inicie o servidor de desenvolvimento: `ionic serve`
 
 O aplicativo será aberto automaticamente no seu navegador em `http://localhost:8100`.
+
+## Demonstração do Projeto
+
+Assista a uma breve demonstração das funcionalidades do aplicativo:
+
+<video src="./media/demonstracaoApiPokemon.mp4" controls autoplay muted loop style="width:100%; max-width:800px;"></video>
