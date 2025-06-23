@@ -37,4 +37,7 @@ O aplicativo será aberto automaticamente no seu navegador em `http://localhost:
 
 Assista a uma breve demonstração das funcionalidades do aplicativo:
 
-(https://youtu.be/IHrMM0vduF4)
+https://youtu.be/IHrMM0vduF4
+
+<video src="./src/app/media/demonstracaoApiPokemon.mp4" controls autoplay muted loop style="width:100%; max-width:800px;"></video>
+
